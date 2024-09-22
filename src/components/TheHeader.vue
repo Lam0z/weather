@@ -1,14 +1,21 @@
 <script setup>
 import { ref } from "vue";
+import { useRoute } from "vue-router";
 import { useStore } from "@/stores/store";
 const store = useStore();
+const route = useRoute();
+const path = ref(route.path);
 
+if (path.value != "/") {
+    const cityId = path.value.split("/").pop();
+}
+console.log(path.value);
 const city = ref("ивантеевка");
 </script>
 
 <template>
     <section class="header">
-        <nav class="navbar bg-primary navbar-expand-md" data-bs-theme="dark">
+        <nav class="navbar bg-black navbar-expand-md" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#"
                     ><img src="../assets/img/logo-small.png" alt=""
@@ -35,12 +42,23 @@ const city = ref("ивантеевка");
                             >
                         </li>
                         <li class="nav-item">
-                            <router-link class="nav-link" to="/city/123"
-                                >Second</router-link
+                            <router-link
+                                class="nav-link"
+                                :to="
+                                    store.city.Key
+                                        ? `/city/${store.city.Key}`
+                                        : ''
+                                "
+                                >{{
+                                    store.city.LocalizedName
+                                        ? store.city.LocalizedName
+                                        : "City Page"
+                                }}</router-link
                             >
                         </li>
                     </ul>
                     <form
+                        v-if="path == '/'"
                         class="d-flex"
                         role="search"
                         @submit.prevent.enter="store.getCityes(city)"
@@ -48,11 +66,11 @@ const city = ref("ивантеевка");
                         <input
                             class="form-control me-2"
                             type="search"
-                            placeholder="Search"
+                            placeholder="Search City"
                             aria-label="Search"
                             v-model="city"
                         />
-                        <button class="btn btn-success" type="submit">
+                        <button class="btn btn-primary" type="submit">
                             Search
                         </button>
                     </form>

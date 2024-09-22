@@ -35,3 +35,15 @@ img {
     max-width: 100%;
     object-fit: cover;
 }
+.main {
+    position: relative;
+}
+.error {
+    transform: translate(-50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-weight: bold;
+    text-transform: uppercase;
+    /* margin: 0 auto; */
+}
