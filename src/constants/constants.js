@@ -1,7 +1,7 @@
 export const API_KEY = `apikey=M3rE5jVqoRZL9cGuGUqwASRznEkxCZbQ`;
 export const DETAILS = `details=true`;
 export const METRIC = `metric=true`;
-export const API = `http://dataservice.accuweather.com/`;
+export const API = `https://dataservice.accuweather.com/`;
 export const API_CITY = `${API}locations/v1/`;
 export const API_SEARCH = `${API}locations/v1/cities/search?${API_KEY}&q=`;
 export const API_FORECAST1 = `${API}forecasts/v1/daily/1day/`;
