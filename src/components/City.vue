@@ -29,7 +29,7 @@ const swiperBreakpoints = {
 };
 </script>
 <template>
-    <section class="city" v-if="store.currConditions.length">
+    <section class="city" v-if="store.currConditions.length && !store.loader">
         <div class="city__current-weather">
             <div class="city__name">
                 {{ store.city.EnglishName }}
@@ -125,7 +125,13 @@ const swiperBreakpoints = {
                 <div class="city__day-item">
                     <div class="city__day-date day">
                         <span>TODAY</span>
-                        <span> 21.0</span>
+                        <span>
+                            {{
+                                store.dayForecasts.DailyForecasts[0].Date.split(
+                                    "T"
+                                )[0].slice(5)
+                            }}</span
+                        >
                     </div>
                     <img
                         :src="[
@@ -263,7 +269,7 @@ const swiperBreakpoints = {
     }
 
     &__weatcher-icon {
-        width: 48px;
+        width: 70px;
         height: 48px;
     }
 
@@ -296,6 +302,7 @@ const swiperBreakpoints = {
     }
 
     &__weatcher-icon {
+        // object-fit: ;
     }
 
     &__h12-temp {
@@ -312,11 +319,14 @@ const swiperBreakpoints = {
     &__day-item {
         padding: 1rem;
         display: grid;
-        grid-template-columns: 100px 60px 1fr 2fr 30px;
+        grid-template-columns: 1fr 1fr;
         column-gap: 1rem;
         align-items: center;
         justify-items: center;
         border-bottom: 1px solid var(--color);
+        @media (min-width: 768px) {
+            grid-template-columns: 100px 90px 1fr 2fr 30px;
+        }
     }
     .day {
         display: grid;
@@ -327,6 +337,10 @@ const swiperBreakpoints = {
     }
     &__day-date {
         text-align: center;
+        grid-column: span 3;
+        @media (min-width: 768px) {
+            grid-column: span 1;
+        }
     }
 
     &__day-icon {
@@ -347,8 +361,13 @@ const swiperBreakpoints = {
     }
 
     &__day-conditions {
-        justify-self: start;
-        padding-left: 40%;
+        justify-self: center;
+        grid-column: span 3;
+        @media (min-width: 768px) {
+            justify-self: start;
+            grid-column: span 1;
+            padding-left: 40%;
+        }
         img {
             max-width: 22px;
             margin-right: 0.5rem;

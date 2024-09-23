@@ -39,6 +39,8 @@ const store = useStore();
         padding: 2rem;
         position: relative;
         background: url(../assets/img/bg.jpg) no-repeat center/cover;
+        display: grid;
+        grid-template-columns: 1fr auto;
     }
 
     &__item-name {
@@ -46,11 +48,18 @@ const store = useStore();
     }
 
     &__item-geolocation {
+        grid-row: 2/3;
     }
-    btn {
-        position: absolute;
-        right: 1rem;
-        top: 1rem;
+    .btn {
+        align-self: center;
+        grid-row: span 2;
+        grid-column: 2/3;
+        display: grid;
+        align-items: center;
+        // display: none;
+        // position: absolute;
+        // right: 1rem;
+        // top: 1rem;
     }
 }
 </style>

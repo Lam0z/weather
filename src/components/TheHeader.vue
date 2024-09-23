@@ -9,8 +9,7 @@ const path = ref(route.path);
 if (path.value != "/") {
     const cityId = path.value.split("/").pop();
 }
-console.log(path.value);
-const city = ref("ивантеевка");
+const city = ref("");
 </script>
 
 <template>

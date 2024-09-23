@@ -63,11 +63,11 @@ export const useStore = defineStore("store", () => {
     };
     const getCityWeatherData = async (key) => {
         loader.value = true;
-        // await getCity(key);
-        // await getCurrentConditions(key);
-        // await getDayForecasts(key);
-        // await getDay5Forecasts(key);
-        // await getHour12Forecasts(key);
+        await getCity(key);
+        await getCurrentConditions(key);
+        await getDayForecasts(key);
+        await getDay5Forecasts(key);
+        await getHour12Forecasts(key);
         loader.value = false;
     };
 
